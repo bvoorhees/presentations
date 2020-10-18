@@ -1,0 +1,90 @@
+---
+title: "Natural Language Processing for Employee Listening"
+author: "Bennet Voorhees"
+date: "10/21/2020"
+output: powerpoint_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## NLP for Employee Listening 
+
+So... I have a 10-month old daughter, and am doing a lot of Natural Language Processing (NLP) work lately. 
+
+Thus, it is only appropriate for me to marry some NLP thinking with nursery rhymes.  
+
+- NLP nimble: Act on insights in near-real time
+- NLP quick: It's never been easier get started doing NLP 
+- NLP the candle stick: don't burn the trust of your employees! OR get burned.
+
+## NLP nimble: Acting in real time on company-wide issues affecting your employees
+
+Text analysis/NLP together with a continuous listening strategy comprised of both:
+
+-Open-ended questions in frequent pulse surveys 
+-Observation of aggregate themes/trends  on internal social media platforms 
+
+... allows you to act fast and help your employees adapt to change quickly.
+
+- Major company events:
+  - **Pulse surveys:** What do you need from your manager in light of our recent spin-off announcement"?
+  - **Aggregated social media data**: Posts containing "spin-off" or "acquisition"
+  
+- Employer brand:  
+  - **Pulse surveys:** What steps should we take to make our company a great place to work?
+  - **Aggregated social media data**: Posts containing "spin-off" or "acquisition"
+
+## NLP nimble: Acting in real time on societal issues affecting your company
+
+- COVID-19 and adapting to change:
+  - Pulse surveys: *What's the biggest barrier to getting your work done at home?"*
+  - Aggregated data from public posts on internal social media: *Posts containing 'work from home' or 'WFH'** 
+
+- Racial Justice and Diversity and Inclusion:
+  - Aggregated data from public posts on internal social media: *Posts containing 'George Floyd', 'Diversity and Inclusion', etc.* 
+
+## NLP Quick: It's never been easier to get started
+
+**All you need**
+
+- Text data in a spreadsheet
+
+- Time and (free) tools to:
+    - Clean text data
+    - Slice and Aggregate text data by attribute, time frame, or topic of interest
+
+## NLP Quick: Analysis doesn't need to be complicated to be useful
+
+- Top two-word phrases (phrase cloud)
+
+- Comments surfacing specific 
+
+## NLP the candle stick: Earn your employees trust! Or get burned.
+
+**Never EVER** 
+- Focus on the individual!
+
+*ALWAYS*
+
+- Communicate to your employees:
+  - Intention of using their responses or activity on corporate systems
+  - Your aggregation and privacy policies
+  
+- Have an aggregation policy that
+  - Sets a minimum number of comments/posts that guarantees anonymity (usually 20).
+  - Describes how you will share data
+  
+## Next steps
+
+This presentation was created using R.
+
+All code that made these slides (including the code for charts and graphs) is available to you on Github to get started.
+
+Feel free to share among your people analytics teams!
+
+Cheers!
+
+Bennet
+    
