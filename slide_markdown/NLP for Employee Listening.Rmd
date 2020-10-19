@@ -1,6 +1,6 @@
 ---
 title: "Natural Language Processing for Employee Listening"
-subtitle: "Nimble and quick. But there's a candlestick"
+subtitle: "You too can be nimble and quick. But there's a candlestick"
 author: "Bennet Voorhees"
 date: "10/21/2020"
 output: 
@@ -13,6 +13,11 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+#Get tweets on HR and HR Analytics from twitter (if not already loaded into memory)
+if (!'en_tweets'%in%ls()){
+  source('../scripts/nlp0_get_hr_tweets.R')
+}
 ```
 
 ## NLP for Employee Listening 
@@ -42,26 +47,22 @@ Text analysis/NLP used in a continuous listening strategy comprised of both:
 
 ### **Major company events:**
 
-- Pulse surveys: **"What do you need from your manager in light of our recent spin-off announcement?"**
+- Pulse surveys: **"What do you need from leaders in light of our recent spin-off announcement?"**
 - Aggregated social media data: **Posts containing "spin-off" or "acquisition"**
   
 ### **Employer brand:**
 
 - Pulse surveys: **What steps should we take to make our company a great place to work?**
-- Aggregated social media data: **Posts containing "spin-off" or "acquisition"**
+- Aggregated social media data: **Posts containing "proud" or "fulfilling"**
 
 ## Nimble: React to societal issues 
 
-<font size="4">
+### **COVID-19 and adapting to change**
+- Pulse surveys: **"What's the biggest barrier to getting your work done at home?"**
+- Aggregated data from public posts on internal social media: **Posts containing 'work from home' or 'WFH'**
 
-- COVID-19 and adapting to change:
-  - Pulse surveys: What's the biggest barrier to getting your work done at home?"
-  - Aggregated data from public posts on internal social media: Posts containing 'work from home' or 'WFH'
-
-- Racial Justice and Diversity and Inclusion:
-  - Aggregated data from public posts on internal social media: Posts containing 'George Floyd', 'Diversity and Inclusion', etc.
-
-</font>
+### **Racial Justice and Diversity and Inclusion**
+- Aggregated data from public posts on internal social media: Posts containing 'George Floyd', 'Diversity and Inclusion', etc.
 
 ## NLP Quick: It's never been easier to get started
 
@@ -75,34 +76,49 @@ Text analysis/NLP used in a continuous listening strategy comprised of both:
 
 ## NLP Quick: Don't make it complicated
 
-- Top two-word phrases (phrase cloud)
+### Letting the data speak for itself
+- "What are people talking about generally?"
+- Top two-word phrases (*Bigram frequency Analysis*)
 
-- Comments surfacing specific 
+### Look for specific words or phrases
+- "What are people talking about when they mention X"
+- Word/phrase search, followed by top two-word phrases
 
-## NLP the candle stick: Earn your employees trust! Or get burned.
+## NLP the candle stick: Don't burn your colleagues' trust!
 
 **Never EVER** 
-- Focus on the individual!
+- Focus on the individual
+- Expose insights that can identify an individual
 
 *ALWAYS*
 
-- Communicate to your employees:
-  - Intention of using their responses or activity on corporate systems
-  - Your aggregation and privacy policies
-  
-- Have an aggregation policy that
+1. Understand what you're doing with modeling or sentiment analysis:
+  - Do you understand how algorithms affect your conclusions? 
+  - Are you enough of a linguist to trust sentiment scores?
+2. Are you being lazy?
+  - Computers aren't a substitute for old-fashioned reading
+2. Have an aggregation policy that
   - Sets a minimum number of comments/posts that guarantees anonymity (usually 20).
-  - Describes how you will share data
-  
-## Next steps
+  - Describes how you will share data with others
+3. Communicate to your employees:
+  - Intention of using their responses or activity on corporate systems **for good!**
+  - Who gets to see their information
+  - Your aggregation and privacy policies
 
-This presentation was created using R.
+  
+## Next steps - get started!
+
+<center>
+
+![](img/nlp_github_qrcode.png)
+
+This presentation was created using R and RStudio. 
 
 All code that made these slides (including the code for charts and graphs) is available to you on Github to get started.
 
+or visit 
+
 Feel free to share among your people analytics teams!
 
-Cheers!
 
-Bennet
     

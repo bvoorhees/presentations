@@ -14,15 +14,15 @@ twitter_token <- create_token(
 
 #get tweets with hr analytics, people analytics, or hr hashtags
 hr_analytics_tweets <- search_tweets(q = "#hranalytics",
-                                     n = 10000)
+                                     n = 100000)
 
 people_analytics_tweets <- search_tweets(q = "#peopleanalytics",
-                                         n = 10000)
+                                         n = 100000)
 
-hr_tweets <- search_tweets(q = "#hr",n = 10000)
+hr_tweets <- search_tweets(q = "#hr",n = 100000)
 
-#combine into a single dataframe
+#combine into a single data frame
 tweets<-rbind(people_analytics_tweets,hr_analytics_tweets,hr_tweets)
 
-#filter to english
+#filter on just English posts
 en_tweets<-tweets %>% filter(lang=='en')
