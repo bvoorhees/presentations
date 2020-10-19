@@ -14,15 +14,21 @@ twitter_token <- create_token(
 
 #get tweets with hr analytics, people analytics, or hr hashtags
 hr_analytics_tweets <- search_tweets(q = "#hranalytics",
-                                     n = 100000)
+                                     n = 5000) 
 
-people_analytics_tweets <- search_tweets(q = "#peopleanalytics",
-                                         n = 100000)
+people_analytics_hash_tweets <- search_tweets(q = "#peopleanalytics",
+                                         n = 5000)
 
-hr_tweets <- search_tweets(q = "#hr",n = 100000)
+people_analytics_tweets <- search_tweets(q = "people analytics",
+                                              n = 5000)
+
+hr_tweets <- search_tweets(q = "#hr",n = 10000)
 
 #combine into a single data frame
-tweets<-rbind(people_analytics_tweets,hr_analytics_tweets,hr_tweets)
+tweets<-rbind(people_analytics_tweets,people_analytics_hash_tweets,hr_analytics_tweets,hr_tweets)
+tweets<- tweets %>% filter(!duplicated(status_id))
 
 #filter on just English posts
 en_tweets<-tweets %>% filter(lang=='en')
+
+saveRDS(en_tweets,'./scripts/temp_out/en_tweets.RDS')

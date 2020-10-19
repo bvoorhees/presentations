@@ -12,17 +12,44 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+library(tidyverse)
+library(tidytext)
+library(gridExtra)
+library(tm)
+
 knitr::opts_chunk$set(echo = FALSE)
 
-#Get tweets on HR and HR Analytics from twitter (if not already loaded into memory)
-if (!'en_tweets'%in%ls()){
+#Get tweets on HR and HR Analytics from twitter (if not already executed - this takes time to run)
+if (!file.exists('../scripts/temp_out/en_tweets.RDS')){
   source('../scripts/nlp0_get_hr_tweets.R')
+} else{
+  en_tweets<-readRDS('../scripts/temp_out/en_tweets.RDS')
 }
+
+#Run script that pulls posts on certain topics (in this edition COVID 19 and D&I)
+source('../scripts/nlp1_posts_containing_specific_topics.R')
+
+#Run script that identify topics by bi-gram (two-word phrase) frequency analysis
+source('../scripts/nlp2_generate_topics_from_text.R')
+
+#Run script that makes graphs from bi-gram frequency analysis
+source('../scripts/nlp3_generate_graphs_on_topics.R')
+
+
+#give an example of text cleaning
+raw_tweet<-en_tweets[6,"text"][[1]]
+
+cleaned_tweet<-gsub('http\\S+','',raw_tweet)
+cleaned_tweet<-gsub('\\#\\S+','',cleaned_tweet)
+cleaned_tweet<-gsub('\\@\\S+','',cleaned_tweet)
+cleaned_tweet<-removeWords(cleaned_tweet,stopwords('en'))
+cleaned_tweet<-removePunctuation(cleaned_tweet)
+cleaned_tweet<-stripWhitespace(cleaned_tweet)
 ```
 
 ## NLP for Employee Listening 
 
-<div class="columns-2">
+<div style="float: right; width: 50%;">
 <br><br>
 So... I have a 10-month old daughter, and have been doing a lot of Natural Language Processing (NLP) work lately. 
 
@@ -31,7 +58,9 @@ Thus, it is only appropriate for me to marry some NLP thinking with nursery rhym
 - **NLP nimble**: Act on insights in near-real time
 - **NLP quick**: It's never been easier get started doing NLP 
 - **NLP the candle stick**: don't burn the trust of your colleagues! 
+</div>
 
+<div style="float: left; width: 50%;">
 <br><br>
 ![](img/post_activity.png){width=100%}
 
@@ -47,8 +76,8 @@ Text analysis/NLP used in a continuous listening strategy comprised of both:
 
 ### **Major company events:**
 
-- Pulse surveys: **"What do you need from leaders in light of our recent spin-off announcement?"**
-- Aggregated social media data: **Posts containing "spin-off" or "acquisition"**
+- Pulse surveys: **"What do you need from leaders in light of our recent acquisition announcement?"**
+- Aggregated social media data: **Posts containing "M&A" or "acquisition"**
   
 ### **Employer brand:**
 
@@ -56,67 +85,128 @@ Text analysis/NLP used in a continuous listening strategy comprised of both:
 - Aggregated social media data: **Posts containing "proud" or "fulfilling"**
 
 ## Nimble: React to societal issues 
+<div style="float: left; width: 50%;">
+```{r Top Societal Topics Chart, fig.height=5, fig.width=6.25, message=FALSE, warning=FALSE}
+grid.arrange(covid_chart, d_i_chart)
+```
+</div>
 
-### **COVID-19 and adapting to change**
+<div style="float: right; width: 35%;">
+### **COVID-19**
 - Pulse surveys: **"What's the biggest barrier to getting your work done at home?"**
 - Aggregated data from public posts on internal social media: **Posts containing 'work from home' or 'WFH'**
 
-### **Racial Justice and Diversity and Inclusion**
-- Aggregated data from public posts on internal social media: Posts containing 'George Floyd', 'Diversity and Inclusion', etc.
+### **Racial Justice and D&I**
+- Aggregated data from public posts on internal social media: **Posts containing 'George Floyd', 'Diversity and Inclusion', etc.**
 
-## NLP Quick: It's never been easier to get started
+</div>
 
-**All you need**
+## Quick: It's never been easier to get started
 
-- Text data in a spreadsheet
+<div style="float: left; width: 35%;">
 
-- Time and (free) tools to:
-    - Clean text data
-    - Slice and Aggregate text data by attribute, time frame, or topic of interest
+### What you need
 
-## NLP Quick: Don't make it complicated
+1. Text data in a spreadsheet
 
-### Letting the data speak for itself
+2. Time and (free) tools to:
+    + Clean text data
+    + Put text into 'tokens' (usually individual or groupings of words)
+    + Slice and Aggregate text data by comment/poster attribute, time frame, or topic of interest
+</div>
+
+<div style="float: right; width: 50%;">
+
+
+### Getting from raw data
+
+<body style="background-color:lightgray;">
+<font size=3>
+`r raw_tweet`
+</body>
+
+
+Raw data is filled with things that aren't always useful or understandable to humans:
+
+* Common words (of, is, the a, they, we)
+* URLs, Hashtags, emoji
+* Unusual characters and white space
+* Foreign lanaguages 
+
+</font>
+
+### ...to useable data
+
+<body style="background-color:lightgray;">
+<font size=3>
+`r cleaned_tweet`
+</body>
+</font>
+
+</div>
+
+## Quick: No need for complicated analytics
+
+<div style="float: left; width: 35%;">
+
+### <font size=4>**1. Let the data speak for itself**
 - "What are people talking about generally?"
-- Top two-word phrases (*Bigram frequency Analysis*)
+- Top two-word phrases (*Bi-gram frequency Analysis*)
+</font>
+<br><br>
 
-### Look for specific words or phrases
+
+### <font size=4>**2. Then, look for specific cuts**
 - "What are people talking about when they mention X"
+- "What are people in X division, or Y division saying?"
 - Word/phrase search, followed by top two-word phrases
+</font>
+</div>
 
-## NLP the candle stick: Don't burn your colleagues' trust!
+<div style="float: right; width: 65%;">
+```{r Top General and PA Topics Chart, fig.height=5, fig.width=6.05, message=FALSE, warning=FALSE}
+grid.arrange(all_topics_chart, p_a_chart)
+```
+</div>
 
-**Never EVER** 
-- Focus on the individual
-- Expose insights that can identify an individual
+## NLP the candle stick: Don't burn trust!
+<div style="float: left; width: 30%;">
+<span style="color:red">**Never EVER**</span>
 
-*ALWAYS*
+1. Focus on the individual
 
-1. Understand what you're doing with modeling or sentiment analysis:
-  - Do you understand how algorithms affect your conclusions? 
-  - Are you enough of a linguist to trust sentiment scores?
-2. Are you being lazy?
-  - Computers aren't a substitute for old-fashioned reading
-2. Have an aggregation policy that
-  - Sets a minimum number of comments/posts that guarantees anonymity (usually 20).
-  - Describes how you will share data with others
-3. Communicate to your employees:
-  - Intention of using their responses or activity on corporate systems **for good!**
-  - Who gets to see their information
-  - Your aggregation and privacy policies
+2. Expose insights that can identify an individual
 
+3. Not read raw comments or posts!!
+</div>
+
+<div style="float: right; width: 70%;">
+
+<span style="color:green">**ALWAYS**</span>
+
+1. **Understand the math** behind modeling or sentiment analysis:
+    + Do you understand how algorithms or lexicons affect your conclusions? 
+    + Are you enough of a linguist to trust sentiment scores?
+2. Have an **aggregation policy** that:
+    + Sets a minimum number of comments/posts that guarantees anonymity (usually 20).
+    + Describes how you will share data with others
+3. **Communicate to your employees:**
+    + Intention of using their responses or activity on corporate systems **for good!**
+    + Who gets to see their information
+    + Your aggregation and privacy policies
+</div>
   
 ## Next steps - get started!
 
 <center>
 
-![](img/nlp_github_qrcode.png)
+![](img/nlp_github_qrcode.png){height=250px}
 
 This presentation was created using R and RStudio. 
 
-All code that made these slides (including the code for charts and graphs) is available to you on Github to get started.
+All code that made these slides (including the code for charts and graphs) is available to you
 
-or visit 
+Scan the QR code above or visit [github.com/bvoorhees/presentations](https://github.com/bvoorhees/presentations)
 
 Feel free to share among your people analytics teams!
 
