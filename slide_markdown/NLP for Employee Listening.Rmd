@@ -37,11 +37,13 @@ source('../scripts/nlp3_generate_graphs_on_topics.R')
 
 
 #give an example of text cleaning
-raw_tweet<-en_tweets[6,"text"][[1]]
+raw_tweet<-en_tweets[59,"text"][[1]]
+raw_tweet<-gsub('\n\n','\n',raw_tweet)
 
 cleaned_tweet<-gsub('http\\S+','',raw_tweet)
 cleaned_tweet<-gsub('\\#\\S+','',cleaned_tweet)
 cleaned_tweet<-gsub('\\@\\S+','',cleaned_tweet)
+cleaned_tweet<-gsub('(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])','',cleaned_tweet)
 cleaned_tweet<-removeWords(cleaned_tweet,stopwords('en'))
 cleaned_tweet<-removePunctuation(cleaned_tweet)
 cleaned_tweet<-stripWhitespace(cleaned_tweet)
@@ -103,7 +105,7 @@ grid.arrange(covid_chart, d_i_chart)
 
 ## Quick: It's never been easier to get started
 
-<div style="float: left; width: 35%;">
+<div style="float: left; width: 45%;">
 
 ### What you need
 
@@ -113,39 +115,39 @@ grid.arrange(covid_chart, d_i_chart)
     + Clean text data
     + Put text into 'tokens' (usually individual or groupings of words)
     + Slice and Aggregate text data by comment/poster attribute, time frame, or topic of interest
+
 </div>
 
 <div style="float: right; width: 50%;">
 
-
 ### Getting from raw data
 
-<body style="background-color:lightgray;">
-<font size=3>
+<div class="blue">
+<font size= "2">
 `r raw_tweet`
-</body>
+</font>
+</div>
 
+<font size= 3>
 
-Raw data is filled with things that aren't always useful or understandable to humans:
+Raw data is filled with things that aren't always useful or understandable to machines:
 
 * Common words (of, is, the a, they, we)
 * URLs, Hashtags, emoji
 * Unusual characters and white space
-* Foreign lanaguages 
+* Foreign languages 
 
 </font>
 
 ### ...to useable data
 
-<body style="background-color:lightgray;">
-<font size=3>
+<div class="blue">
+<font size="2">
 `r cleaned_tweet`
-</body>
 </font>
-
 </div>
 
-## Quick: No need for complicated analytics
+## Quick: No need for complicated analytics 
 
 <div style="float: left; width: 35%;">
 
@@ -201,7 +203,7 @@ grid.arrange(all_topics_chart, p_a_chart)
 <center>
 
 ![](img/nlp_github_qrcode.png){height=250px}
-
+<br>
 This presentation was created using R and RStudio. 
 
 All code that made these slides (including the code for charts and graphs) is available to you
