@@ -38,15 +38,15 @@ source('../scripts/nlp3_generate_graphs_on_topics.R')
 
 #give an example of text cleaning
 raw_tweet<-en_tweets[59,"text"][[1]]
-raw_tweet<-gsub('\n\n','\n',raw_tweet)
+raw_tweet<-gsub('\n\n','\n',raw_tweet) #get rid of extra blank lines
 
-cleaned_tweet<-gsub('http\\S+','',raw_tweet)
-cleaned_tweet<-gsub('\\#\\S+','',cleaned_tweet)
-cleaned_tweet<-gsub('\\@\\S+','',cleaned_tweet)
-cleaned_tweet<-gsub('(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])','',cleaned_tweet)
-cleaned_tweet<-removeWords(cleaned_tweet,stopwords('en'))
-cleaned_tweet<-removePunctuation(cleaned_tweet)
-cleaned_tweet<-stripWhitespace(cleaned_tweet)
+cleaned_tweet<-gsub('http\\S+','',raw_tweet) #get rid of URLS
+cleaned_tweet<-gsub('\\#\\S+','',cleaned_tweet) #get rid of hash tags
+cleaned_tweet<-gsub('\\@\\S+','',cleaned_tweet) #get rid of mentions
+cleaned_tweet<-gsub('(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])','',cleaned_tweet) #get rid of emojis
+cleaned_tweet<-removeWords(cleaned_tweet,stopwords('en')) #get rid of stop words
+cleaned_tweet<-removePunctuation(cleaned_tweet) #get rid of punctuation
+cleaned_tweet<-stripWhitespace(cleaned_tweet) #get rid of excessive spaces
 ```
 
 ## NLP for Employee Listening 
@@ -58,7 +58,7 @@ So... I have a 10-month old daughter, and have been doing a lot of Natural Langu
 Thus, it is only appropriate for me to marry some NLP thinking with nursery rhymes.  
 
 - **NLP nimble**: Act on insights in near-real time
-- **NLP quick**: It's never been easier get started doing NLP 
+- **NLP quick**: It's never been easier to get started doing NLP 
 - **NLP the candle stick**: don't burn the trust of your colleagues! 
 </div>
 
