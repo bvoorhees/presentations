@@ -15,7 +15,7 @@ Bennet Voorhees’ People Analytics Conference Slides + Code
 You’re free to use these resources as you wish. Please just give me
 credit by simply writing:
 
-Source: @bennetvoorhees(http://www.twitter.com/bvoorhees) on Twitter
+Source: [@bennetvoorhees](http://www.twitter.com/bennetvoorhees) on Twitter
 
 ## Questions?
 
