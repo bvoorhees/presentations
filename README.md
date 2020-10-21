@@ -7,7 +7,7 @@ Bennet Voorhees’ People Analytics Conference Slides + Code
     Listening](https://rpubs.com/bvoorhees/nlp4el) (Conference Board
     Human Capital Analytics Conference 2020; October 21st, 2021;
     virtual).
-      - [Slide Code](nlp_for_employee_listening.Rmd)
+      - [Slide Code](slide_markdown/nlp_for_employee_listening.Rmd)
       - NLP Code: see scripts starting with `nlp` in ‘scripts’ folder.
 
 ## Usage
