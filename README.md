@@ -8,7 +8,7 @@ Bennet Voorhees’ People Analytics Conference Slides + Code
     Human Capital Analytics Conference 2020; October 21st, 2021;
     virtual).
       - [Slide Code](slide_markdown/nlp_for_employee_listening.Rmd)
-      - NLP Code: see scripts starting with `nlp` in ‘scripts’ folder.
+      - NLP Code: see scripts starting with `nlp` in the [scripts folder](/scripts/).
 
 ## Usage
 
