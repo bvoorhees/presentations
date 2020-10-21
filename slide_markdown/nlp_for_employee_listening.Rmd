@@ -29,24 +29,24 @@ if (!file.exists('../scripts/temp_out/en_tweets.RDS')){
 #Run script that pulls posts on certain topics (in this edition COVID 19 and D&I)
 source('../scripts/nlp1_posts_containing_specific_topics.R')
 
-#Run script that identify topics by bi-gram (two-word phrase) frequency analysis
+#Run script that identify topics by bigram (two-word phrase) frequency analysis
 source('../scripts/nlp2_generate_topics_from_text.R')
 
-#Run script that makes graphs from bi-gram frequency analysis
+#Run script that makes graphs from bigram frequency analysis
 source('../scripts/nlp3_generate_graphs_on_topics.R')
 
 
 #give an example of text cleaning
 raw_tweet<-en_tweets[59,"text"][[1]]
-raw_tweet<-gsub('\n\n','\n',raw_tweet) #get rid of extra blank lines
+raw_tweet<-gsub('\n\n','\n',raw_tweet)
 
-cleaned_tweet<-gsub('http\\S+','',raw_tweet) #get rid of URLS
-cleaned_tweet<-gsub('\\#\\S+','',cleaned_tweet) #get rid of hash tags
-cleaned_tweet<-gsub('\\@\\S+','',cleaned_tweet) #get rid of mentions
-cleaned_tweet<-gsub('(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])','',cleaned_tweet) #get rid of emojis
-cleaned_tweet<-removeWords(cleaned_tweet,stopwords('en')) #get rid of stop words
-cleaned_tweet<-removePunctuation(cleaned_tweet) #get rid of punctuation
-cleaned_tweet<-stripWhitespace(cleaned_tweet) #get rid of excessive spaces
+cleaned_tweet<-gsub('http\\S+','',raw_tweet)
+cleaned_tweet<-gsub('\\#\\S+','',cleaned_tweet)
+cleaned_tweet<-gsub('\\@\\S+','',cleaned_tweet)
+cleaned_tweet<-gsub('(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])','',cleaned_tweet)
+cleaned_tweet<-removeWords(cleaned_tweet,stopwords('en'))
+cleaned_tweet<-removePunctuation(cleaned_tweet)
+cleaned_tweet<-stripWhitespace(cleaned_tweet)
 ```
 
 ## NLP for Employee Listening 
@@ -58,7 +58,7 @@ So... I have a 10-month old daughter, and have been doing a lot of Natural Langu
 Thus, it is only appropriate for me to marry some NLP thinking with nursery rhymes.  
 
 - **NLP nimble**: Act on insights in near-real time
-- **NLP quick**: It's never been easier to get started doing NLP 
+- **NLP quick**: It's never been easier get started doing NLP 
 - **NLP the candle stick**: don't burn the trust of your colleagues! 
 </div>
 
@@ -67,7 +67,7 @@ Thus, it is only appropriate for me to marry some NLP thinking with nursery rhym
 ![](img/post_activity.png){width=100%}
 
 </div>
-## Nimble: React to company-specifc issues
+## Nimble: React to company-specific issues {.build}
 
 Text analysis/NLP used in a continuous listening strategy comprised of both:
 
@@ -76,12 +76,12 @@ Text analysis/NLP used in a continuous listening strategy comprised of both:
 
 ... allows you to act fast and help your employees adapt to change quickly.
 
-### **Major company events:**
+### **Major company events:**  
 
 - Pulse surveys: **"What do you need from leaders in light of our recent acquisition announcement?"**
 - Aggregated social media data: **Posts containing "M&A" or "acquisition"**
   
-### **Employer brand:**
+### **Employer brand:** 
 
 - Pulse surveys: **What steps should we take to make our company a great place to work?**
 - Aggregated social media data: **Posts containing "proud" or "fulfilling"**
@@ -103,24 +103,24 @@ grid.arrange(covid_chart, d_i_chart)
 
 </div>
 
-## Quick: It's never been easier to get started
+## Quick: It's never been easier to get started {.build}
 
 <div style="float: left; width: 45%;">
 
-### What you need
+### **What you need**
 
 1. Text data in a spreadsheet
 
 2. Time and (free) tools to:
     + Clean text data
-    + Put text into 'tokens' (usually individual or groupings of words)
-    + Slice and Aggregate text data by comment/poster attribute, time frame, or topic of interest
+    + Divide text into 'tokens' (usually individual words or groupings of words)
+    + Slice and aggregate text data by comment/poster attribute, time frame, or topic of interest
 
 </div>
 
 <div style="float: right; width: 50%;">
 
-### Getting from raw data
+### **Getting from raw data**
 
 <div class="blue">
 <font size= "2">
@@ -132,14 +132,14 @@ grid.arrange(covid_chart, d_i_chart)
 
 Raw data is filled with things that aren't always useful or understandable to machines:
 
-* Common words (of, is, the a, they, we)
+* Common words (of, is, the, they, we)
 * URLs, Hashtags, emoji
 * Unusual characters and white space
 * Foreign languages 
 
 </font>
 
-### ...to useable data
+### **...to machine-useable data**
 
 <div class="blue">
 <font size="2">
@@ -153,7 +153,7 @@ Raw data is filled with things that aren't always useful or understandable to ma
 
 ### <font size=4>**1. Let the data speak for itself**
 - "What are people talking about generally?"
-- Top two-word phrases (*Bi-gram frequency Analysis*)
+- Top two-word phrases (*bigram frequency analysis*)
 </font>
 <br><br>
 
@@ -165,7 +165,7 @@ Raw data is filled with things that aren't always useful or understandable to ma
 </font>
 </div>
 
-<div style="float: right; width: 65%;">
+<div style="float: right; width: 60%;">
 ```{r Top General and PA Topics Chart, fig.height=5, fig.width=6.05, message=FALSE, warning=FALSE}
 grid.arrange(all_topics_chart, p_a_chart)
 ```
@@ -175,27 +175,29 @@ grid.arrange(all_topics_chart, p_a_chart)
 <div style="float: left; width: 30%;">
 <span style="color:red">**Never EVER**</span>
 
-1. Focus on the individual
+1. **Not read** raw comments or posts!! Machines and NLP are not silver bullets. 
 
-2. Expose insights that can identify an individual
+2. Share insights with others that could **identify an individual**!
 
-3. Not read raw comments or posts!!
 </div>
 
-<div style="float: right; width: 70%;">
+<div style="float: right; width: 65%;">
 
 <span style="color:green">**ALWAYS**</span>
 
+
 1. **Understand the math** behind modeling or sentiment analysis:
     + Do you understand how algorithms or lexicons affect your conclusions? 
-    + Are you enough of a linguist to trust sentiment scores?
-2. Have an **aggregation policy** that:
-    + Sets a minimum number of comments/posts that guarantees anonymity (usually 20).
-    + Describes how you will share data with others
+    + Can you explain to someone else how a sentiment score works?
+2. Have an **aggregation and privacy policy** that:
+    + Sets a minimum number of comments/posts that guarantees anonymity (usually 20) when sharing results
+    + Describes with whom you will share data
+    + Sets limits on the use of the data (aka never for performance purposes)
 3. **Communicate to your employees:**
     + Intention of using their responses or activity on corporate systems **for good!**
-    + Who gets to see their information
+    + Who gets to see what they've said
     + Your aggregation and privacy policies
+</font>
 </div>
   
 ## Next steps - get started!
@@ -211,6 +213,3 @@ All code that made these slides (including the code for charts and graphs) is av
 Scan the QR code above or visit [github.com/bvoorhees/presentations](https://github.com/bvoorhees/presentations)
 
 Feel free to share among your people analytics teams!
-
-
-    
